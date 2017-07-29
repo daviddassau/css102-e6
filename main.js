@@ -51,32 +51,38 @@ allProducts.push(product3);
 allProducts.push(product4);
 allProducts.push(product5);
 
-console.log("All my weird baby products: ", allProducts);
 
 var productContainer = document.getElementById("product-container");
 
-for (var i = 0; i < allProducts.length; i++) {
 
-	var currentProduct = allProducts[i];
+	function buildDomString(product) {
+    var domString = "";
 
-	var domString = "";
-
-	domString +=     '<section class="product">';
+    domString +=     '<section class="product">';
     domString +=       '<div class="title">';
-    domString +=         '<h2>' + currentProduct.name + '</h2>';
+    domString +=         '<h2>' + product.name + '</h2>';
     domString +=       '</div>';
     domString +=       '<div class="image">';
-    domString +=         '<img src="'+ currentProduct.imagePath +'" alt="' + currentProduct.imageAlt + '">';
+    domString +=         '<img src="'+ product.imagePath +'" alt="' + product.imageAlt + '">';
     domString +=       '</div>';
     domString +=       '<div class="description">';
-    domString +=         '<p>' + currentProduct.description +'</p>';
-    domString +=         '<h6>$' + currentProduct.price +'</h6>';
+    domString +=         '<p>' + product.description +'</p>';
+    domString +=         '<h6>$' + product.price +'</h6>';
     domString +=       '</div>';
     domString +=     '</section>';
-
-    console.log("Dom String from for loop", domString);
-    productContainer.innerHTML += domString;
+    return domString;
 }
+
+function printProductArrayToDom(productArray) {
+  for (var i = 0; i < productArray.length; i++) {
+
+    var currentProduct = productArray[i];
+    var productDomString = buildDomString(currentProduct);
+    productContainer.innerHTML += productDomString;
+  }
+}
+	
+printProductArrayToDom(allProducts);
 
 
 
