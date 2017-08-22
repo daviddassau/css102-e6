@@ -65,7 +65,9 @@ body {
 	top: 90px;
 }
 
-
+.border-funsies {
+	border: dashed red 10px;
+}
 
 
 
