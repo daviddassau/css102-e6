@@ -42,7 +42,7 @@ var product5 = {
   imageAlt: "Product: Boob Hat",
   description: "This is a really good description of our product. It really sells it. It's the best.",
   price: 36,
-  soldOut: true
+  soldOut: false
 };
 
 allProducts.push(product1);
@@ -69,6 +69,11 @@ var productContainer = document.getElementById("product-container");
     domString +=         '<p>' + product.description +'</p>';
     domString +=         '<h6>$' + product.price +'</h6>';
     domString +=       '</div>';
+    if (product.soldOut) {
+      domString += '<div class="sold-out">';
+      domString +=  '<img src="./images/soldOut.png" alt="Sold Out">';
+      domString += '</div>';
+    }
     domString +=     '</section>';
     return domString;
 }
