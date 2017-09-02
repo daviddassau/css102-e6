@@ -1,6 +1,12 @@
-var allProducts = [];
+// No more var - let, const
+// Fat arrow functions
+// Object literal value shorthand notation
+// String template literals
 
-var product1 = {
+
+const allProducts = [];
+
+const product1 = {
   name: "Mop Attire",
   imagePath: "./images/mopAttire.jpg",
   imageAlt: "Product: Mop Attire",
@@ -9,7 +15,7 @@ var product1 = {
   soldOut: false
 };
 
-var product2 = {
+const product2 = {
   name: "Taco Suit",
   imagePath: "./images/tacoSuit.jpg",
   imageAlt: "Product: Taco Suit",
@@ -18,7 +24,7 @@ var product2 = {
   soldOut: false
 };
 
-var product3 = {
+const product3 = {
   name: "Neck Decoration",
   imagePath: "./images/neckDecoration.jpg",
   imageAlt: "Product: Neck Decoration",
@@ -27,7 +33,7 @@ var product3 = {
   soldOut: false
 };
 
-var product4 = {
+const product4 = {
   name: "Head Ornament",
   imagePath: "./images/headOrnament.jpg",
   imageAlt: "Product: Head Ornament",
@@ -36,7 +42,7 @@ var product4 = {
   soldOut: true
 };
 
-var product5 = {
+const product5 = {
   name: "Boob Hat",
   imagePath: "./images/boobHat.jpg",
   imageAlt: "Product: Boob Hat",
@@ -51,13 +57,19 @@ allProducts.push(product3);
 allProducts.push(product4);
 allProducts.push(product5);
 
+const addNewProduct = (name, imagePath, imageAlt, description, price, soldOut) => {
+  const newProduct = {name, imagePath, imageAlt, description, price, soldOut};
+  allProducts.push(newProduct);
+}
 
-var productContainer = document.getElementById("product-container");
+addNewProduct("Butt Cream", "http://assets.epicurious.com/photos/57631b4eff66dde1456dfed4/master/pass/sweetened-whipped-cream.jpg", "Here is a picture of butt cream.", "lorem oh well", 4.99, false);
 
 
-	function buildDomString(product) {
-    var domString = "";
+const productContainer = document.getElementById("product-container");
 
+
+	const buildDomString = (product) => {
+    let domString = "";
     domString +=     '<section class="product">';
     domString +=       '<div class="title child">';
     domString +=         '<h2>' + product.name + '</h2>';
@@ -78,11 +90,10 @@ var productContainer = document.getElementById("product-container");
     return domString;
 }
 
-function printProductArrayToDom(productArray) {
-  for (var i = 0; i < productArray.length; i++) {
-
-    var currentProduct = productArray[i];
-    var productDomString = buildDomString(currentProduct);
+const printProductArrayToDom = (productArray) => {
+  for (let i = 0; i < productArray.length; i++) {
+    const currentProduct = productArray[i];
+    const productDomString = buildDomString(currentProduct);
     productContainer.innerHTML += productDomString;
   }
 }
@@ -91,15 +102,15 @@ function printProductArrayToDom(productArray) {
 printProductArrayToDom(allProducts);
 
 
-var selectedCard;
+let selectedCard;
 
-document.getElementById('product-container').addEventListener("click", function(event){
+document.getElementById('product-container').addEventListener("click", (event) => {
   changeTheBorder(event);
   printSelectedDescription();
 });
 
 
-function changeTheBorder(event) {
+const changeTheBorder = (event) => {
   if (event.target.classList.contains("child")){
     selectedCard = event.target.parentNode;
   } else if (event.target.parentNode.parentNode.classList.contains("product")){
@@ -107,14 +118,11 @@ function changeTheBorder(event) {
   } else if (event.target.classList.contains("product")){
     selectedCard = event.target;
   }
-
   selectedCard.classList.add("border-funsies");
-
 }
 	
-function printSelectedDescription() {
-
-  var description = selectedCard.childNodes[2].childNodes[0].innerHTML;
+const printSelectedDescription = () => {
+  const description = selectedCard.childNodes[2].childNodes[0].innerHTML;
   console.log(description);
 }
 
